@@ -2,61 +2,61 @@
 
 let 
 
-  syntax-nix = pkgs.vimUtils.buildVimPluginsFrom2Nix rec {
+  syntax-nix = pkgs.vimUtils.buildVimPluginFrom2Nix rec {
     pname = "syntax-nix";
     version = "7d23e97d13c40fcc6d603b291fe9b6e5f92516ee";
     src = pkgs.fetchFromGitHub {
       owner = "LnL7";
       repo = "vim-nix";
       rev = version;
-      sha256 = "";
+      sha256 = "sha256-M3CAUueEhLD0J6sLUpRkFv+vK4aGYO+Xnokxmn+VxqU=";
     };
   };
 
-  telescope-ctags-outline = pkgs.vimUtils.buildVimPluginsFrom2Nix rec {
+  telescope-ctags-outline = pkgs.vimUtils.buildVimPluginFrom2Nix rec {
     pname = "telescope-ctags-outline";
     version = "88767c2f79b4c10369e82dcd661af67182c00991";
     src = pkgs.fetchFromGitHub {
       owner = "fcying";
       repo = "${pname}.nvim";
       rev = version;
-      sha256 = "";
+      sha256 = "sha256-iYJRJI3WCQp1MA5t6eKBxEme9fVQn6LObB9KLalPzgM=";
     };
   };
 
 
-  diff-fold = pkgs.vimUtils.buildVimPluginsFrom2Nix rec {
+  diff-fold = pkgs.vimUtils.buildVimPluginFrom2Nix rec {
     pname = "diff-fold";
     version = "48b4505c1b6f14ceb4e4be732aad337147ef36cd";
     src = pkgs.fetchFromGitHub {
       owner = "sgeb";
-      repo = "vim-${pname}"
+      repo = "vim-${pname}";
       rev = version;
-      sha256 = "";
+      sha256 = "sha256-M3CAUueEhLD0J6sLUpRkFv+vK4aGYO+Xnokxmn+VxqU=";
     };
   };
 
 
-  vdebug = pkgs.vimUtils.buildVimPluginsFrom2Nix rec {
+  vdebug = pkgs.vimUtils.buildVimPluginFrom2Nix rec {
     pname = "vdebug";
     version = "v2.0.0";
     src = pkgs.fetchFromGitHub {
       owner = "joonty";
       repo = pname;
       rev = version;
-      sha256 = "";
+      sha256 = "sha256-kobMC6TRFZcEbgFdOaBgXUzoeWQUrVzUKylN1N9nEnc=";
     };
   };
 
 
-  spacecamp = pkgs.vimUtils.buildVimPluginsFrom2Nix rec {
+  spacecamp = pkgs.vimUtils.buildVimPluginFrom2Nix rec {
     pname = "spacecamp";
-    version = "";
+    version = "98959e3e9c1c75755749723d06f233d1bc622a46";
     src = pkgs.fetchFromGitHub {
       owner = "Martin-Lndbl";
       repo = pname;
       rev = version;
-      sha256 = "";
+      sha256 = "sha256-ZzbcG2nV99Ul/thOf6MwQLKFB5ycL/Pkobp/zbEi4JE=";
     };
   };
 
@@ -67,16 +67,16 @@ let
         "${pkgs.tree-sitter.builtGrammars."tree-sitter-${new}"}/parser"
       }")${"\n\n"}${acc}
     ''
-  ) "" langages;
+  ) "" languages;
 
 in
 
 {
   enable = true;
   vimAlias = true;
-  extraConfig = builtins.readFile ./neovom/neovim.vim;
+  extraConfig = builtins.readFile ./neovim/neovim.vim;
   
-  plugins = with pkgs.vimPlugins; {
+  plugins = with pkgs.vimPlugins; [
   
     airline
     {
@@ -109,7 +109,7 @@ in
     {
       plugin = nvim-treesitter;
       type = "lua";
-      config = builtins.readFile ./neovim/plugins/treesitter.lua; +
+      config = builtins.readFile ./neovim/plugins/treesitter.lua +
         tree-sitter-languages [
           "bash"
           "c"
@@ -174,8 +174,14 @@ in
       config = builtins.readFile ./neovim/plugins/lsp-signature.lua;
     }
     vim-vsnip
-  };
+  ];
   
   extraPackages = with pkgs; [
+	sumneko-lua-language-server
+	nodePackages.typescript-language-server
+	nodePackages.bash-language-server
+	nodePackages.pyright
+	rnix-lsp
+	rust-analyzer
   ];
 }

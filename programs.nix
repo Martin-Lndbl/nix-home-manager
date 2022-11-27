@@ -2,9 +2,9 @@
 {
   home-manager.enable = true;
 
-#  neovim = import ./programs/neovim.nix {
-#    inherit pkgs;
-#  };
+  neovim = import ./programs/neovim.nix {
+    inherit pkgs;
+  };
 
   git = import ./programs/git.nix {
     inherit pkgs;

@@ -16,8 +16,13 @@
     calc
     universal-ctags
     fd
-    neovim
+	whatsapp-for-linux
   ];
+
+  xsession.windowManager.i3 = {
+	enable = true;
+    extraConfig = builtins.readFile ./i3/config;
+  };
 
   programs = import ./programs.nix {
     inherit pkgs config;
