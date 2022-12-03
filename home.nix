@@ -9,14 +9,24 @@
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem(builtins.parseDrvName (pkg.pname or pkg.name)).name [
     "google-chrome"
-    ];
+	"spotify"
+	"discord"
+	"steam"
+	"steam-original"	
+	];
 
   home.packages = with pkgs; [
     google-chrome
     calc
     universal-ctags
     fd
-	whatsapp-for-linux
+
+    whatsapp-for-linux
+    spotify
+	discord
+	steam
+
+	unzip	
   ];
 
   xsession.windowManager.i3 = {

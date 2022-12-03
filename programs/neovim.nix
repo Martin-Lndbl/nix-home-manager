@@ -49,7 +49,7 @@ let
   };
 
 
-  spacecamp = pkgs.vimUtils.buildVimPluginFrom2Nix rec {
+  Spacecamp = pkgs.vimUtils.buildVimPluginFrom2Nix rec {
     pname = "spacecamp";
     version = "98959e3e9c1c75755749723d06f233d1bc622a46";
     src = pkgs.fetchFromGitHub {
@@ -153,8 +153,8 @@ in
    
     delimitMate
     vim-css-color
-    awesome-vim-colorschemes
-    spacecamp
+    /* awesome-vim-colorschemes */
+    Spacecamp
 
     vim-devicons
   
@@ -174,6 +174,8 @@ in
       config = builtins.readFile ./neovim/plugins/lsp-signature.lua;
     }
     vim-vsnip
+
+	vim-ccls
   ];
   
   extraPackages = with pkgs; [
@@ -181,6 +183,7 @@ in
 	nodePackages.typescript-language-server
 	nodePackages.bash-language-server
 	nodePackages.pyright
+	ccls
 	rnix-lsp
 	rust-analyzer
   ];

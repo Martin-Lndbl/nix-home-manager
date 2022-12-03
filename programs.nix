@@ -17,4 +17,6 @@
   bash = import ./programs/bash.nix {
     inherit pkgs;
   };
+
+	direnv.enable = true;
 }
