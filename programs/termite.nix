@@ -5,5 +5,5 @@
   allowBold = true;
   browser = "google-chrome-stable";
   clickableUrl = true;
-  font = "Monospace 14";
+  font = "Monospace 16";
 }

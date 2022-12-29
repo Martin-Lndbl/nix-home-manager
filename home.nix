@@ -11,22 +11,19 @@
     "google-chrome"
 	"spotify"
 	"discord"
-	"steam"
-	"steam-original"	
 	];
 
   home.packages = with pkgs; [
     google-chrome
+    unzip	
     calc
     universal-ctags
     fd
 
     whatsapp-for-linux
     spotify
-	discord
-	steam
+    discord
 
-	unzip	
   ];
 
   xsession.windowManager.i3 = {
